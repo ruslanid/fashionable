@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 export const HeaderContainer = styled.div`
     display: flex;
@@ -11,7 +12,7 @@ export const HeaderContainer = styled.div`
     box-shadow: 0px 0px 1px 1px rgba(20,23,28,0.1), 0px 3px 1px 0px rgba(20,23,28,0.1);
 `;
 
-export const LogoContainer = styled.div`
+export const LogoContainer = styled(Link)`
     height: 55px;
     width: 105px;
     padding: 0 20px;
@@ -29,7 +30,7 @@ export const NavigationContainer = styled.div`
     align-item: center;
 `;
 
-export const LinkContainer = styled.div`
+export const LinkContainer = styled(Link)`
     color: #1c657a;
     font-size: 19px;
     padding: 0 20px;

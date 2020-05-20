@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 
 import {
     DirectorySectionContainer,
@@ -8,8 +9,10 @@ import {
     SubtitleContainer
 } from './directory-section.styles';
 
-const DirectorySection = ({title, linkUrl, imageUrl}) => (
-    <DirectorySectionContainer>
+const DirectorySection = ({title, linkUrl, imageUrl, history, match}) => (
+    <DirectorySectionContainer
+        onClick={() => history.push(`${match.url}${linkUrl}`)}
+    >
         <BackgroundImageContainer style={{ backgroundImage: `url(${imageUrl})`}} />
         <ContentContainer>
             <TitleContainer>{title.toUpperCase()}</TitleContainer>
@@ -18,4 +21,4 @@ const DirectorySection = ({title, linkUrl, imageUrl}) => (
     </DirectorySectionContainer>
 );
 
-export default DirectorySection;
+export default withRouter(DirectorySection);

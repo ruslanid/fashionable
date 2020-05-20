@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 
 import {
   HeaderContainer,
@@ -10,17 +11,17 @@ import {
 
 import Logo from '../../assets/images/hat.jpg';
 
-const Header = () => (
+const Header = ({history}) => (
   <HeaderContainer>
-    <LogoContainer>
+    <LogoContainer to="/">
         <ImageContainer alt="Home Logo" src={Logo} />
     </LogoContainer>
     <NavigationContainer>
-      <LinkContainer>Shop</LinkContainer>
-      <LinkContainer>Contact us</LinkContainer>
-      <LinkContainer>SIGN IN</LinkContainer>
+      <LinkContainer to="/shop">Shop</LinkContainer>
+      <LinkContainer to="/contact-us">Contact us</LinkContainer>
+      <LinkContainer to="/authentication">SIGN IN</LinkContainer>
     </NavigationContainer>
   </HeaderContainer>
 );
 
-export default Header;
+export default withRouter(Header);
