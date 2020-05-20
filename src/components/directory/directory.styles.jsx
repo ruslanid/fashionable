@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
 export const DirectoryContainer = styled.div`
-  width: 80%;
+  width: 70%;
   margin: 20px auto;
 `;
