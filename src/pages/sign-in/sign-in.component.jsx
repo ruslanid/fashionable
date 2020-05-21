@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 import {
   SignInContainer,
   TitleContainer,
@@ -10,6 +9,8 @@ import {
 
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
+
+import { signInWithGoogle } from '../../firebase/firebase';
 
 class SignInPage extends Component {
   state = {
@@ -55,7 +56,12 @@ class SignInPage extends Component {
           />
 
           <CustomButton type="submit">SIGN IN</CustomButton>
-          <CustomButton type="submit" googleSignIn>SIGN IN WITH GOOGLE</CustomButton>
+          <CustomButton
+            googleSignIn
+            onClick={signInWithGoogle}
+          >
+            SIGN IN WITH GOOGLE
+          </CustomButton>
 
         </form>
 

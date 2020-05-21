@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 
 import {
@@ -11,17 +11,29 @@ import {
 
 import Logo from '../../assets/images/hat.jpg';
 
-const Header = ({history}) => (
-  <HeaderContainer>
-    <LogoContainer to="/">
-        <ImageContainer alt="Home Logo" src={Logo} />
-    </LogoContainer>
-    <NavigationContainer>
-      <LinkContainer to="/shop">Shop</LinkContainer>
-      <LinkContainer to="/contact-us">Contact us</LinkContainer>
-      <LinkContainer to="/sign-in">SIGN IN</LinkContainer>
-    </NavigationContainer>
-  </HeaderContainer>
-);
+import { auth } from '../../firebase/firebase';
+
+class Header extends Component  {
+
+  render() {
+    return (
+      <HeaderContainer>
+        <LogoContainer to="/">
+            <ImageContainer alt="Home Logo" src={Logo} />
+        </LogoContainer>
+        <NavigationContainer>
+          <LinkContainer to="/shop">Shop</LinkContainer>
+          <LinkContainer to="/contact-us">Contact us</LinkContainer>
+          {
+            this.props.currentUser ?
+            (<LinkContainer onClick={() => auth.signOut()}>SIGN OUT</LinkContainer>)
+            :
+            (<LinkContainer to="/sign-in">SIGN IN</LinkContainer>)
+          }
+        </NavigationContainer>
+      </HeaderContainer>
+    )
+  }
+};
 
 export default withRouter(Header);

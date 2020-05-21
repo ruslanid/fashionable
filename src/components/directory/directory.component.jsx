@@ -35,10 +35,9 @@ class Directory extends Component {
         <DirectoryContainer>
           <Carousel
             autoplay={true}
-            speed={1500}
+            autoplayInterval={2000}
+            speed={1000}
             wrapAround={true}
-            transitionMode="fade"
-            swiping={false}
             pauseOnHover={true}
           >
             {this.state.sections.map(({id, ...otherProps}) => (

@@ -12,7 +12,7 @@ import CustomButton from '../../components/custom-button/custom-button.component
 
 class SignUpPage extends Component {
   state = {
-    name: '',
+    displayName: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -24,7 +24,7 @@ class SignUpPage extends Component {
       alert("Password don't match");
       return;
     }
-    this.setState({name: '', email: '', password: '', confirmPassword: ''});
+    this.setState({displayName: '', email: '', password: '', confirmPassword: ''});
   };
 
   handleChange = event => {
@@ -43,9 +43,9 @@ class SignUpPage extends Component {
 
           <FormInput
               type="text"
-              name="name"
-              placeholder="Name"
-              value={this.state.name}
+              name="displayName"
+              placeholder="Display name"
+              value={this.state.displayName}
               handleChange={this.handleChange}
               required
           />
@@ -82,7 +82,7 @@ class SignUpPage extends Component {
         </form>
 
         <FooterContainer>
-         Already have an account? <LinkContainer to="/sign-in">Sign In</LinkContainer>
+          Already have an account? <LinkContainer to="/sign-in">Sign In</LinkContainer>
         </FooterContainer>
       </SignUnContainer>
     );
