@@ -19,7 +19,7 @@ const Header = ({history}) => (
     <NavigationContainer>
       <LinkContainer to="/shop">Shop</LinkContainer>
       <LinkContainer to="/contact-us">Contact us</LinkContainer>
-      <LinkContainer to="/authentication">SIGN IN</LinkContainer>
+      <LinkContainer to="/sign-in">SIGN IN</LinkContainer>
     </NavigationContainer>
   </HeaderContainer>
 );

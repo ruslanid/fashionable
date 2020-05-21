@@ -6,7 +6,8 @@ import Header from './components/header/header.component';
 import HomePage from './pages/home/home.component';
 import ShopPage from './pages/shop/shop.component';
 import ContactUsPage from './pages/contact-us/contact-us.component';
-import AuthenticationPage from './pages/authentication/authentication.component';
+import SignInPage from './pages/sign-in/sign-in.component';
+import SignUpPage from './pages/sign-up/sign-up.component';
 
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
     <div className="App">
         <Header />
         <Switch>
-          <Route path="/authentication" component={AuthenticationPage} />
+          <Route path="/sign-in" component={SignInPage} />
+          <Route path="/sign-up" component={SignUpPage} />
           <Route path="/contact-us" component={ContactUsPage} />
           <Route path="/shop" component={ShopPage} />
           <Route path="/" component={HomePage} />
