@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import Header from './components/header/header.component';
 
@@ -12,32 +14,32 @@ import SignUpPage from './pages/sign-up/sign-up.component';
 
 import { auth, createUserDocument } from './firebase/firebase';
 
+import { setCurrentUser } from './redux/user/user.actions';
+import { selectCurrentUser } from './redux/user/user.selectors';
+
 class App extends Component {
-  state = {
-    currentUser: null
-  }
 
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    const {setCurrentUser} = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         try {
           const userRef = await createUserDocument(userAuth);
 
           userRef.onSnapshot(snapshot => {
-            this.setState({
-              currentUser: {
+            setCurrentUser({
                 id: snapshot.id,
                 ...snapshot.data()
-              }
             })
           });
         } catch (error) {
           console.log(error);
         }
       } else {
-        this.setState({currentUser: null});
+        setCurrentUser(null);
       }
     });
   };
@@ -47,11 +49,11 @@ class App extends Component {
   }
 
   render() {
-    const {currentUser} = this.state;
+    const {currentUser} = this.props;
 
     return (
       <div className="App">
-          <Header currentUser={currentUser} />
+          <Header />
           <Switch>
             <Route 
               path="/sign-in"
@@ -70,4 +72,12 @@ class App extends Component {
   }
 };
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
