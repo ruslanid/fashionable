@@ -10,7 +10,7 @@ import {
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 
-import { signInWithGoogle } from '../../firebase/firebase';
+import { signInWithGoogle, auth } from '../../firebase/firebase';
 
 class SignInPage extends Component {
   state = {
@@ -18,9 +18,14 @@ class SignInPage extends Component {
     password: ''
   };
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
+    const {email, password} = this.state;
     event.preventDefault();
-    this.setState({email: '', password: ''});
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   handleChange = event => {

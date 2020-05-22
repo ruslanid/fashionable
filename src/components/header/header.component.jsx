@@ -26,7 +26,7 @@ class Header extends Component  {
           <LinkContainer to="/contact-us">Contact us</LinkContainer>
           {
             this.props.currentUser ?
-            (<LinkContainer onClick={() => auth.signOut()}>SIGN OUT</LinkContainer>)
+            (<LinkContainer as="div" onClick={() => auth.signOut()}>SIGN OUT</LinkContainer>)
             :
             (<LinkContainer to="/sign-in">SIGN IN</LinkContainer>)
           }

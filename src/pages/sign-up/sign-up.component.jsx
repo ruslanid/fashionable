@@ -10,6 +10,8 @@ import {
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 
+import { auth, createUserDocument } from '../../firebase/firebase';
+
 class SignUpPage extends Component {
   state = {
     displayName: '',
@@ -18,13 +20,21 @@ class SignUpPage extends Component {
     confirmPassword: ''
   };
 
-  handleSubmit = event => {
+  handleSubmit = async (event) => {
+    const {displayName, email, password} = this.state;
     event.preventDefault();
+
     if (this.state.password !== this.state.confirmPassword) {
       alert("Password don't match");
       return;
     }
-    this.setState({displayName: '', email: '', password: '', confirmPassword: ''});
+
+    try {
+      const {user} = await auth.createUserWithEmailAndPassword(email, password);
+      await createUserDocument(user, {displayName});
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   handleChange = event => {
