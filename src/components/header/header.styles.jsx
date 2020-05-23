@@ -27,7 +27,7 @@ export const NavigationContainer = styled.div`
     width: 60%;
     display: flex;
     justify-content: flex-end;
-    align-item: center;
+    align-items: center;
 `;
 
 export const LinkContainer = styled(Link)`

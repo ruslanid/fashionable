@@ -11,7 +11,9 @@ import {
   LinkContainer
 } from './header.styles';
 
-import Logo from '../../assets/images/hat.jpg';
+import HomeLogo from '../../assets/images/hat.jpg';
+
+import CartIcon from '../cart-icon/cart-icon.component';
 
 import { auth } from '../../firebase/firebase';
 
@@ -20,7 +22,7 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 const Header = ({currentUser}) => (
   <HeaderContainer>
     <LogoContainer to="/">
-        <ImageContainer alt="Home Logo" src={Logo} />
+        <ImageContainer alt="Home Logo" src={HomeLogo} />
     </LogoContainer>
     <NavigationContainer>
       <LinkContainer to="/shop">Shop</LinkContainer>
@@ -31,6 +33,7 @@ const Header = ({currentUser}) => (
         :
         (<LinkContainer to="/sign-in">SIGN IN</LinkContainer>)
       }
+      <CartIcon />
     </NavigationContainer>
   </HeaderContainer>
 );

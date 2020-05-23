@@ -16,6 +16,7 @@ import { auth, createUserDocument } from './firebase/firebase';
 
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
+import CheckoutPage from './pages/checkout/checkout.component';
 
 class App extends Component {
 
@@ -65,6 +66,9 @@ class App extends Component {
             />
             <Route path="/contact-us" component={ContactUsPage} />
             <Route path="/shop" component={ShopPage} />
+            <Route
+              path="/checkout"
+              render={() => currentUser ? (<CheckoutPage />) : (<Redirect to="/sign-in" />)} />
             <Route path="/" component={HomePage} />
           </Switch>
       </div>
