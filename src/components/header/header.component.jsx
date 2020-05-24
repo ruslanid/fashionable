@@ -8,11 +8,14 @@ import {
   LogoContainer,
   ImageContainer,
   NavigationContainer,
-  LinkContainer
+  LinkContainer,
+  ShopLinkContainer,
+  ShopDropdownContainer
 } from './header.styles';
 
 import HomeLogo from '../../assets/images/hat.jpg';
 
+import ShopDropdown from '../shop-dropdown/shop-dropdown.component';
 import CartIcon from '../cart-icon/cart-icon.component';
 
 import { auth } from '../../firebase/firebase';
@@ -25,7 +28,14 @@ const Header = ({currentUser}) => (
         <ImageContainer alt="Home Logo" src={HomeLogo} />
     </LogoContainer>
     <NavigationContainer>
-      <LinkContainer to="/shop">Shop</LinkContainer>
+      
+      <ShopLinkContainer>
+        <LinkContainer to="/shop">Shop</LinkContainer>
+        <ShopDropdownContainer>
+            <ShopDropdown />
+        </ShopDropdownContainer>
+      </ShopLinkContainer>
+
       <LinkContainer to="/contact-us">Contact us</LinkContainer>
       {
         currentUser ?

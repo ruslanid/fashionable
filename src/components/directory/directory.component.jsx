@@ -1,52 +1,31 @@
 import React from 'react';
-import { Component } from 'react';
 import Carousel from 'nuka-carousel';
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import {DirectoryContainer} from './directory.styles';
 
 import DirectorySection from '../directory-section/directory-section.component';
+import { selectionDirectorySections } from '../../redux/directory/directory.selectors';
 
-class Directory extends Component {
-    state = {
-        sections: [
-            {
-              id: 1,
-              title: 'hats',
-              imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
-              linkUrl: 'shop/hats'
-            },
-            {
-              id: 2,
-              title: 'jackets',
-              imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-              linkUrl: 'shop/jackets'
-            },
-            {
-              id: 3,
-              title: 'sneakers',
-              imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
-              linkUrl: 'shop/sneakers'
-            }
-        ]
-    }
+const Directory = ({sections}) => (
+  <DirectoryContainer>
+    <Carousel
+      autoplay={true}
+      autoplayInterval={2000}
+      speed={1000}
+      wrapAround={true}
+      pauseOnHover={true}
+    >
+      {sections.map(({id, ...otherProps}) => (
+        <DirectorySection key={id} {...otherProps} />
+      ))}
+    </Carousel>
+  </DirectoryContainer>
+)
 
-    render () {
-      return (
-        <DirectoryContainer>
-          <Carousel
-            autoplay={true}
-            autoplayInterval={2000}
-            speed={1000}
-            wrapAround={true}
-            pauseOnHover={true}
-          >
-            {this.state.sections.map(({id, ...otherProps}) => (
-              <DirectorySection key={id} {...otherProps} />
-            ))}
-          </Carousel>
-        </DirectoryContainer>
-      )
-    }
-};
+const mapStateToProps = createStructuredSelector({
+  sections: selectionDirectorySections
+})
 
-export default Directory;
+export default connect(mapStateToProps)(Directory);

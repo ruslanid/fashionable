@@ -7,7 +7,7 @@ export const HeaderContainer = styled.div`
     width: 100%;
     height: 70px;
     align-items: center;
-    padding: 40px 30px;
+    padding: 35px 30px;
     margin-bottom: 40px;
     box-shadow: 0px 0px 1px 1px rgba(20,23,28,0.1), 0px 3px 1px 0px rgba(20,23,28,0.1);
 `;
@@ -25,6 +25,7 @@ export const ImageContainer = styled.img`
 
 export const NavigationContainer = styled.div`
     width: 60%;
+    height: 70px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -43,5 +44,18 @@ export const LinkContainer = styled(Link)`
 
     &:hover {
         color: #5caac1;
+    }
+`;
+
+export const ShopDropdownContainer = styled.div`
+    display: none;
+`;
+
+export const ShopLinkContainer = styled(Link)`
+    height: 100%;
+    display: flex;
+    align-items: center;
+    &:hover ${ShopDropdownContainer} {
+        display: inline-block;
     }
 `;
