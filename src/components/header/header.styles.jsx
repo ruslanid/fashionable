@@ -51,7 +51,7 @@ export const ShopDropdownContainer = styled.div`
     display: none;
 `;
 
-export const ShopLinkContainer = styled(Link)`
+export const ShopLinkContainer = styled.div`
     height: 100%;
     display: flex;
     align-items: center;

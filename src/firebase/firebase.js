@@ -51,4 +51,4 @@ export const createUserDocument = async (user, additionalData) => {
   }
 
   return userRef;
-} 
+};
