@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import {
   ItemContainer,
@@ -11,17 +12,27 @@ import {
 
 import CustomButton from '../../components/custom-button/custom-button.component';
 
-const CollectionItem = ({imageUrl, name, price}) => (
-  <ItemContainer>
-    <ImageContainer src={imageUrl} alt="Collection item" />
-    <DetailsContainer>
-      <NameContainer>{name}</NameContainer>
-      <PriceContainer>${price}</PriceContainer>
-      <CustomButtonContainer>
-        <CustomButton>Add to cart</CustomButton>
-      </CustomButtonContainer>
-    </DetailsContainer>
-  </ItemContainer>
-);
+import {addItem} from '../../redux/cart/cart.actions';
 
-export default CollectionItem;
+const CollectionItem = ({item, addItem}) => {
+  const {imageUrl, name, price} = item;
+
+  return (
+    <ItemContainer>
+      <ImageContainer src={imageUrl} alt="Collection item" />
+      <DetailsContainer>
+        <NameContainer>{name}</NameContainer>
+        <PriceContainer>${price}</PriceContainer>
+        <CustomButtonContainer>
+          <CustomButton onClick={() => addItem(item)}>Add to cart</CustomButton>
+        </CustomButtonContainer>
+      </DetailsContainer>
+    </ItemContainer>
+  )
+};
+
+const mapDispatchToProps = dispatch => ({
+  addItem: item => dispatch(addItem(item))
+});
+
+export default connect(null, mapDispatchToProps)(CollectionItem);
