@@ -1,17 +1,27 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import CartLogo from '../../assets/images/cart-icon.jpg';
 
 import {
   CartIconContainer,
-  CartImageContainer
+  CartImageContainer,
+  ItemQuantityContainer
 } from './cart-icon.styles';
 
-const CartIcon = ({history}) => (
+import {selectCartItemsQuantity} from '../../redux/cart/cart.selectors';
+
+const CartIcon = ({history, itemQuantity}) => (
   <CartIconContainer onClick={() => history.push("/checkout")}>
     <CartImageContainer alt="Cart logo" src={CartLogo} />
+    <ItemQuantityContainer>{itemQuantity}</ItemQuantityContainer>
   </CartIconContainer>
 );
 
-export default withRouter(CartIcon);
+const mapStateToProps = createStructuredSelector({
+  itemQuantity: selectCartItemsQuantity
+});
+
+export default connect(mapStateToProps)(withRouter(CartIcon));
