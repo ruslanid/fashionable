@@ -32,4 +32,7 @@ export const DescriptionContainer = styled.div`
 
 export const RemoveContainer = styled.div`
   ${DescriptionStyles}
+  padding-left: 12px;
+  cursor: pointer;
+  color: #5CAAC1;
 `;
