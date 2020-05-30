@@ -30,6 +30,11 @@ export const DescriptionContainer = styled.div`
   ${DescriptionStyles}
 `;
 
+export const ArrowContainer = styled.div`
+  cursor: pointer;
+  padding: 0 5px;
+`;
+
 export const RemoveContainer = styled.div`
   ${DescriptionStyles}
   padding-left: 12px;

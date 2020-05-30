@@ -3,7 +3,7 @@ import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
-import CollectionPage from '../collection/collection.components';
+import CollectionPage from '../collection/collection.component';
 import CollectionsOverview from '../../components/collections-overview/collections-overview.component';
 import WithLoading from '../../components/with-loading/with-loading.component';
 
