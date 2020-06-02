@@ -23,7 +23,7 @@ class ShopPage extends Component {
 
   render() {
     const {match, areCollectionsFetching, isCollectionLoaded} = this.props;
-    console.log(isCollectionLoaded);
+
     return (
       <div className="shop-page">
         <Switch>
