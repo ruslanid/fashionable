@@ -6,18 +6,20 @@ import userReducer from './user/user.reducer';
 import directoryReducer from './directory/directory.reducer';
 import shopReducer from './shop/shop.reducer';
 import cartReducer from './cart/cart.reducer';
+import orderReducer from './order/order.reducer';
 
 const persistConfig = {
   key: 'root',
   storage: storage,
-  whitelist: ['cart']
+  whitelist: ['cart', 'order']
 };
 
 const rootReducer = combineReducers({
   user: userReducer,
   directory: directoryReducer,
   shop: shopReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  order: orderReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

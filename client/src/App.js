@@ -11,12 +11,13 @@ import ShopPage from './pages/shop/shop.component';
 import ContactUsPage from './pages/contact-us/contact-us.component';
 import SignInPage from './pages/sign-in/sign-in.component';
 import SignUpPage from './pages/sign-up/sign-up.component';
+import CheckoutPage from './pages/checkout/checkout.component';
+import OrderPage from './pages/order/order.component';
 
 import { auth, createUserDocument } from './firebase/firebase';
 
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
-import CheckoutPage from './pages/checkout/checkout.component';
 
 class App extends Component {
 
@@ -67,6 +68,7 @@ class App extends Component {
             <Route path="/contact-us" component={ContactUsPage} />
             <Route path="/shop" component={ShopPage} />
             <Route path="/checkout" component={CheckoutPage} />
+            <Route path="/order" component={OrderPage} />
             {/* <Route
               path="/checkout"
               render={() => currentUser ? (<CheckoutPage />) : (<Redirect to="/sign-in" />)} /> */}

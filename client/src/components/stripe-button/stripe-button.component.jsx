@@ -1,12 +1,23 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import HomeLogo from '../../assets/images/hat.jpg';
 
-const StripeCheckoutButton = ({price}) => {
+import {
+  selectCartItems,
+  selectCartItemsTotalPrice
+} from '../../redux/cart/cart.selectors';
 
-  const priceForStripe = price * 100;
+import {clearCart} from '../../redux/cart/cart.actions';
+import {addOrder} from '../../redux/order/order.actions';
+
+const StripeCheckoutButton = ({totalPrice, cartItems, dispatch, history}) => {
+
+  const priceForStripe = totalPrice * 100;
 
   const onToken = token => {
     console.log(token);
@@ -18,7 +29,9 @@ const StripeCheckoutButton = ({price}) => {
         token: token
       }
     }).then(res => {
-      alert("Payment successful");
+      dispatch(addOrder(cartItems));
+      dispatch(clearCart());
+      history.push("/order");
     }).catch(error => {
       console.log("Payment error: ", console.log(error));
       alert("Error with a payment. Check that you are using the correct credit card");
@@ -30,7 +43,7 @@ const StripeCheckoutButton = ({price}) => {
       label="Pay Now"
       image={HomeLogo}
       name="Fashionable Inc."
-      description={`Your total is $${price}`}
+      description={`Your total is $${totalPrice}`}
       billingAddress
       shippingAddress
       amount={priceForStripe}
@@ -41,4 +54,9 @@ const StripeCheckoutButton = ({price}) => {
   )
 };
 
-export default StripeCheckoutButton;
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems,
+  totalPrice: selectCartItemsTotalPrice
+});
+
+export default connect(mapStateToProps)(withRouter(StripeCheckoutButton));
