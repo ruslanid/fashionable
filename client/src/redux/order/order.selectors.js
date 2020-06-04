@@ -11,4 +11,4 @@ export const selectLastOrderTotalPrice = createSelector(
   [selectLastOrder],
   lastOrder =>
     lastOrder.reduce((total, item) => total + (item.quantity * item.price), 0)
-)
+);
