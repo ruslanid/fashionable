@@ -4,7 +4,7 @@ export const CheckoutPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 60%;
-  margin: 50px auto 10px;
+  margin: 50px auto 50px;
 `;
 
 export const TitleContainer = styled.h1`
@@ -22,4 +22,10 @@ export const TotalPriceContainer = styled.p`
   justify-content: flex-end;
   margin-top: 30px;
   font-size: 25px;
+`;
+
+export const SignInMessageContainer = styled.p`
+  text-align: center;
+  font-size: 20px;
+  color: red;
 `;

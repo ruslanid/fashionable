@@ -1,12 +1,13 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {createStructuredSelector} from 'reselect';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import {
   CheckoutPageContainer,
   TitleContainer,
   EmptyMessageContainer,
-  TotalPriceContainer
+  TotalPriceContainer,
+  SignInMessageContainer
 } from './checkout.styles';
 
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
@@ -17,30 +18,47 @@ import {
   selectCartItemsTotalPrice
 } from '../../redux/cart/cart.selectors';
 
-const CheckoutPage = ({cartItems, totalPrice}) => (
-  <CheckoutPageContainer>
-    <TitleContainer>Checkout</TitleContainer>
-    {
-      cartItems.length > 0 ?
-      cartItems.map(item => (
-        <CheckoutItem key={item.id} item={item} />
-      ))
-      :
-      <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
+import {
+  selectCurrentUser
+} from '../../redux/user/user.selectors';
+
+
+
+const CheckoutPage = ({ cartItems, totalPrice, currentUser }) => {
+
+  const renderPaySection = () => {
+    if (cartItems.length > 0 && currentUser) {
+      return <PaySection />
+    } else if (cartItems.length > 0) {
+      return (<SignInMessageContainer>Please sign in to complete the order.</SignInMessageContainer>)
+    } else {
+      return null;
     }
-    <TotalPriceContainer>Total: ${totalPrice}</TotalPriceContainer>
-    {
-       cartItems.length > 0 ?
-        <PaySection />
-        :
-        null
-    }
-  </CheckoutPageContainer>
-);
+  };
+
+  return (
+    <CheckoutPageContainer>
+      <TitleContainer>Checkout</TitleContainer>
+      {
+        cartItems.length > 0 ?
+          cartItems.map(item => (
+            <CheckoutItem key={item.id} item={item} />
+          ))
+          :
+          <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
+      }
+      <TotalPriceContainer>Total: ${totalPrice}</TotalPriceContainer>
+      {
+        renderPaySection()
+      }
+    </CheckoutPageContainer>
+  )
+};
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
-  totalPrice: selectCartItemsTotalPrice
+  totalPrice: selectCartItemsTotalPrice,
+  currentUser: selectCurrentUser
 });
 
 export default connect(mapStateToProps)(CheckoutPage);

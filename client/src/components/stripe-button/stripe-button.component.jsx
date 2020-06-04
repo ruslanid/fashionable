@@ -20,7 +20,6 @@ const StripeCheckoutButton = ({totalPrice, cartItems, dispatch, history}) => {
   const priceForStripe = totalPrice * 100;
 
   const onToken = token => {
-    console.log(token);
     axios({
       url: 'payment',
       method: 'post',

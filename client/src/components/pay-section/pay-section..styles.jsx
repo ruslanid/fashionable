@@ -10,5 +10,4 @@ export const PaymentInfoContainer = styled.div`
 export const PaymentButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
 `;
