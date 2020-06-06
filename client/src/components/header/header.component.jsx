@@ -17,8 +17,7 @@ import HomeLogo from '../../assets/images/hat.jpg';
 
 import ShopDropdown from '../shop-dropdown/shop-dropdown.component';
 import CartIcon from '../cart-icon/cart-icon.component';
-
-import { auth } from '../../firebase/firebase';
+import Avatar from '../avatar/avatar.component';
 
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
@@ -39,7 +38,7 @@ const Header = ({currentUser}) => (
       <LinkContainer to="/contact-us">Contact us</LinkContainer>
       {
         currentUser ?
-        (<LinkContainer as="div" onClick={() => auth.signOut()}>SIGN OUT</LinkContainer>)
+        (<Avatar />)
         :
         (<LinkContainer to="/sign-in">SIGN IN</LinkContainer>)
       }

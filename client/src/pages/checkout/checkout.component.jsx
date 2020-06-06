@@ -22,8 +22,6 @@ import {
   selectCurrentUser
 } from '../../redux/user/user.selectors';
 
-
-
 const CheckoutPage = ({ cartItems, totalPrice, currentUser }) => {
 
   const renderPaySection = () => {

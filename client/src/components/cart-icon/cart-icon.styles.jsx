@@ -8,19 +8,20 @@ export const CartIconContainer = styled.div`
   justify-content: center;
   cursor: pointer;
   position: relative;
+  padding-left: 10px;
 `;
 
 export const CartImageContainer = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
 `;
 
 export const ItemQuantityContainer = styled.div`
   position: absolute;
-  right: -3px;
+  right: -8px;
   top: 3px;
   font-size: 13px;
-  background-color: black;
+  background-color: #3148b6;
   color: white;
   padding: 4px 8px;
   border-radius: 50%;
