@@ -9,6 +9,10 @@ export const SignUnContainer = styled.div`
   border: 1px solid gray;
   padding: 20px 35px;
   margin: 60px auto;
+
+  @media (max-width: 768px) {
+		width: 90%;
+	}
 `;
 
 export const TitleContainer = styled.h2`

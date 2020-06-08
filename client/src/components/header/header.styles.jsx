@@ -7,15 +7,18 @@ export const HeaderContainer = styled.div`
 	width: 100%;
 	height: 70px;
 	align-items: center;
-	padding: 35px 30px;
+	padding: 35px 40px;
 	margin-bottom: 40px;
 	box-shadow: 0px 0px 1px 1px rgba(20,23,28,0.1), 0px 3px 1px 0px rgba(20,23,28,0.1);
+
+	@media (max-width: 768px) {
+		padding: 20px 20px;
+	}
 `;
 
 export const LogoContainer = styled(Link)`
 	height: 55px;
-	width: 105px;
-	padding: 0 20px;
+	width: 70px;
 `;
 
 export const ImageContainer = styled.img`
@@ -37,6 +40,10 @@ export const LinkContainer = styled(Link)`
 	padding: 0 20px;
 	cursor: pointer;
 	white-space: nowrap;
+
+	@media (max-width: 768px) {
+		padding: 0 10px;
+	}
 
 	&:last-child {
 		font-weight: bold;

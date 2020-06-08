@@ -5,6 +5,10 @@ export const CheckoutPageContainer = styled.div`
   flex-direction: column;
   width: 60%;
   margin: 50px auto 50px;
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const TitleContainer = styled.h1`

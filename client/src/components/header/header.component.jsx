@@ -35,7 +35,6 @@ const Header = ({currentUser}) => (
         </ShopDropdownContainer>
       </ShopLinkContainer>
 
-      <LinkContainer to="/contact-us">Contact us</LinkContainer>
       {
         currentUser ?
         (<Avatar />)

@@ -22,6 +22,8 @@ export const fetchCollectionsAsync = () => {
 
     firestore.collection("/collections").get()
     .then(querySnapshot => {
+      if (querySnapshot.empty) throw "No data";
+
       const collectionsMap = querySnapshot.docs.reduce((accumulator, doc) => {
         const {title, items} = doc.data();
         const collection = {
@@ -33,6 +35,7 @@ export const fetchCollectionsAsync = () => {
         accumulator[collection.title.toLowerCase()] = collection;
         return accumulator;
       }, {});
+
       dispatch(fetchCollectionsSuccess(collectionsMap));
     })
     .catch(error => dispatch(fetchCollectionsFailure(error.message)))

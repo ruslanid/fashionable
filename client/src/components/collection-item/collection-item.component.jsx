@@ -5,6 +5,7 @@ import {
   ItemContainer,
   ImageContainer,
   DetailsContainer,
+  DescriptionContainer,
   NameContainer,
   PriceContainer,
   CustomButtonContainer
@@ -21,8 +22,10 @@ const CollectionItem = ({item, addItem}) => {
     <ItemContainer>
       <ImageContainer src={imageUrl} alt="Collection item" />
       <DetailsContainer>
-        <NameContainer>{name}</NameContainer>
-        <PriceContainer>${price}</PriceContainer>
+        <DescriptionContainer>
+          <NameContainer>{name}</NameContainer>
+          <PriceContainer>${price}</PriceContainer>
+        </DescriptionContainer>
         <CustomButtonContainer>
           <CustomButton onClick={() => addItem(item)}>Add to cart</CustomButton>
         </CustomButtonContainer>

@@ -9,10 +9,20 @@ export const CollectionPageContainer = styled.div`
 
 export const TitleContainer = styled.h1`
     text-transform: capitalize;
+    text-align: center;
+    margin-bottom: 50px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 30px;
+    }
 `;
 
 export const ItemsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
