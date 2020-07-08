@@ -21,6 +21,10 @@ export const TitleContainer = styled.h2`
   margin: 20px 0;
 `;
 
+export const ErrorContainer = styled.div`
+  color: red;
+`;
+
 export const FooterContainer = styled.p`
   margin-top: 30px;
   text-align: center;

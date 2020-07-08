@@ -13,7 +13,8 @@ export const CheckoutPageContainer = styled.div`
 
 export const TitleContainer = styled.h1`
   border-bottom: 1px solid darkgrey;
-  padding: 15px 0;
+  padding: 0 0 30px;
+  margin-bottom: 0;
 `;
 
 export const EmptyMessageContainer = styled.p`

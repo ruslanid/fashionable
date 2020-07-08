@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {
   SignInContainer,
   TitleContainer,
+  ErrorContainer,
   FooterContainer,
   LinkContainer
 } from './sign-in.styles';
@@ -13,18 +14,33 @@ import CustomButton from '../../components/custom-button/custom-button.component
 import { signInWithGoogle, auth } from '../../firebase/firebase';
 
 class SignInPage extends Component {
+  
   state = {
     email: '',
-    password: ''
+    password: '',
+    error: ''
   };
 
   handleSubmit = async event => {
     const {email, password} = this.state;
     event.preventDefault();
+
+    if (email === '' || password === '') {
+      this.setState({error: 'All fields are required'});
+      return;
+    }
+
     try {
       await auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
       console.log(error);
+      if (error.code === 'auth/invalid-email') {
+        this.setState({error: 'Invalid email format'});
+      } else if (error.code === 'auth/user-not-found') {
+        this.setState({error: 'Invalid email or password'})
+      } else {
+        this.setState({error: 'Unexpected error. Please try again.'});
+      }
     }
   };
 
@@ -43,22 +59,24 @@ class SignInPage extends Component {
         <form onSubmit={this.handleSubmit}>
 
           <FormInput
-            type="email"
+            type="text"
             name="email"
-            placeholder="Email"
+            placeholder="Email *"
             value={this.state.email}
             handleChange={this.handleChange}
-            required
           />
 
           <FormInput
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder="Password *"
             value={this.state.password}
             handleChange={this.handleChange}
-            required
           />
+
+          <ErrorContainer>
+            {this.state.error}
+          </ErrorContainer>
 
           <CustomButton type="submit">SIGN IN</CustomButton>
           <CustomButton

@@ -11,7 +11,7 @@ const PaySection = () => (
   <div>
     <PaymentInfoContainer>
       <p>*Test credit card</p>
-      <p>4242 4242 4242 4242 - Exp: 09/20 - CW: 123</p>
+      <p>4242 4242 4242 4242 - Exp: 12/20 - CW: 123</p>
     </PaymentInfoContainer>
     <PaymentButtonContainer>
       <StripeCheckoutButton />

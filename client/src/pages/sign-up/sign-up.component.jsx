@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {
   SignUnContainer,
   TitleContainer,
+  ErrorContainer,
   FooterContainer,
   LinkContainer
 } from './sign-up.styles';
@@ -17,15 +18,22 @@ class SignUpPage extends Component {
     displayName: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    error: ''
   };
 
   handleSubmit = async (event) => {
-    const {displayName, email, password} = this.state;
+    const {displayName, email, password, confirmPassword} = this.state;
     event.preventDefault();
 
-    if (this.state.password !== this.state.confirmPassword) {
-      alert("Password don't match");
+    if (displayName === '' || email === '' || password === '' || confirmPassword === '') {
+      this.setState({error: 'All fields are required'});
+      return;
+    } else if (password.length < 6) {
+      this.setState({error: 'Password needs to be at least 6 characters long'});
+      return;
+    } else if (password !== confirmPassword) {
+      this.setState({error: 'Passwords do not match'});
       return;
     }
 
@@ -33,7 +41,13 @@ class SignUpPage extends Component {
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
       await createUserDocument(user, {displayName});
     } catch (error) {
-      console.log(error);
+      if (error.code === 'auth/email-already-in-use') {
+        this.setState({error: "Account with this email already exists"});
+      } else if (error.code === 'auth/invalid-email') {
+        this.setState({error: 'Invalid email format'});
+      } else {
+        this.setState({error: 'Unexpected error. Please try again.'});
+      }
     }
   };
 
@@ -54,38 +68,38 @@ class SignUpPage extends Component {
           <FormInput
               type="text"
               name="displayName"
-              placeholder="Display name"
+              placeholder="Display name *"
               value={this.state.displayName}
               handleChange={this.handleChange}
-              required
           />
 
           <FormInput
-              type="email"
+              type="text"
               name="email"
-              placeholder="Email"
+              placeholder="Email *"
               value={this.state.email}
               handleChange={this.handleChange}
-              required
           />
 
           <FormInput
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder="Password *"
               value={this.state.password}
               handleChange={this.handleChange}
-              required
           />
 
           <FormInput
               type="password"
               name="confirmPassword"
-              placeholder="Confirm password"
+              placeholder="Confirm password *"
               value={this.state.confirmPassword}
               handleChange={this.handleChange}
-              required
           />
+
+          <ErrorContainer>
+            {this.state.error}
+          </ErrorContainer>
 
           <CustomButton type="submit">SIGN UP</CustomButton>                   
 

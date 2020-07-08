@@ -29,7 +29,7 @@ const Header = ({currentUser}) => (
     <NavigationContainer>
       
       <ShopLinkContainer>
-        <LinkContainer to="/shop">Shop</LinkContainer>
+        <LinkContainer as="div">Shop</LinkContainer>
         <ShopDropdownContainer>
             <ShopDropdown />
         </ShopDropdownContainer>

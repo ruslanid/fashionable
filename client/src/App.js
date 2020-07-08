@@ -8,7 +8,6 @@ import Header from './components/header/header.component';
 
 import HomePage from './pages/home/home.component';
 import ShopPage from './pages/shop/shop.component';
-import ContactUsPage from './pages/contact-us/contact-us.component';
 import SignInPage from './pages/sign-in/sign-in.component';
 import SignUpPage from './pages/sign-up/sign-up.component';
 import CheckoutPage from './pages/checkout/checkout.component';
@@ -65,13 +64,9 @@ class App extends Component {
               path="/sign-up"
               render={() => currentUser ? (<Redirect to="/" />) : (<SignUpPage />)}
             />
-            <Route path="/contact-us" component={ContactUsPage} />
             <Route path="/shop" component={ShopPage} />
             <Route path="/checkout" component={CheckoutPage} />
             <Route path="/order" component={OrderPage} />
-            {/* <Route
-              path="/checkout"
-              render={() => currentUser ? (<CheckoutPage />) : (<Redirect to="/sign-in" />)} /> */}
             <Route path="/" component={HomePage} />
           </Switch>
       </div>
