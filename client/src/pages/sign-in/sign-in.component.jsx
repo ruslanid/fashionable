@@ -31,6 +31,7 @@ class SignInPage extends Component {
     }
 
     try {
+      this.setState({error: ''});
       await auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
       if (error.code === 'auth/invalid-email') {

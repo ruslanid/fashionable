@@ -38,6 +38,7 @@ class SignUpPage extends Component {
     }
 
     try {
+      this.setState({error: ''});
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
       await createUserDocument(user, {displayName});
     } catch (error) {
