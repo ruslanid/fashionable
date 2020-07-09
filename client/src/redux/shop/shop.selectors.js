@@ -26,7 +26,6 @@ export const selectAreCollectionsFetching = createSelector(
 export const selectIsCollectionLoaded = createSelector(
   [selectShop],
   shop => {
-    console.log(shop.collections);
     return !!shop.collections
   }
 );
