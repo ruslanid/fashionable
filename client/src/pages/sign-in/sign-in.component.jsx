@@ -33,10 +33,9 @@ class SignInPage extends Component {
     try {
       await auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
-      console.log(error);
       if (error.code === 'auth/invalid-email') {
         this.setState({error: 'Invalid email format'});
-      } else if (error.code === 'auth/user-not-found') {
+      } else if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
         this.setState({error: 'Invalid email or password'})
       } else {
         this.setState({error: 'Unexpected error. Please try again.'});

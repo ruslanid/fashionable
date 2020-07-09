@@ -32,7 +32,6 @@ const StripeCheckoutButton = ({totalPrice, cartItems, dispatch, history}) => {
       dispatch(clearCart());
       history.push("/order");
     }).catch(error => {
-      console.log("Payment error: ", console.log(error));
       alert("Error with a payment. Check that you are using the correct credit card");
     })
   };

@@ -25,11 +25,9 @@ if (process.env.NODE_ENV === 'production') {
 
 app.listen(port, error => {
   if (error) throw error;
-  console.log('Server running on port ' + port);
 });
 
 app.post("/payment", (req, res) => {
-  console.log(req);
   const body = {
     source: req.body.token.id,
     amount: req.body.amount,
@@ -38,7 +36,6 @@ app.post("/payment", (req, res) => {
 
   stripe.charges.create(body, (stripeErr, stripeRes) => {
     if (stripeErr) {
-      console.log(stripeErr);
       res.status(500).send({error: stripeErr});
     } else {
       res.status(200).send({success: stripeRes});
